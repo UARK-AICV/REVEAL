@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="REVEAL: Reconstructing Video Amodal Content via Language and Flow Guidance. A diffusion-based framework for open-vocabulary video amodal completion using optical flow and text priors.">
+  <meta name="keywords" content="video amodal segmentation, video diffusion, amodal segmentation, content completion">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>REVEAL: Reconstructing Video Amodal Content via Language and Flow Guidance</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/diffvasicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">REVEAL: Reconstructing Video Amodal Content via Language and Flow Guidance</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Authors</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Anonymous Institution</span>
+          </div>
+
+          <strong class="is-size-5" style="color:#d7191c;">Under Review</strong>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video</span>
+                </a>
+              </span>
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="#"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- <span class="link-block">
+                <a href="./page1/index.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-video"></i>
+                  </span>
+                  <span>Figures (Video)</span>
+                </a>
+              </span> -->
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img id="teaser" src="./static/my_images/teaser.png" width="100%" alt="Teaser">
+      <h2 class="subtitle">
+        We tackle the problem of open-vocabulary video amodal segmentation and content completion: given an input video and a text prompt,
+        REVEAL generates amodal (visible + invisible) masks and RGB content via a two-stage pipeline guided by optical flow and language priors.
+      </h2>
+    </div>
+  </div>
+</section>
+
+<div class="columns is-centered has-text-centered">
+<h2 class="title is-3">In-the-wild Gallery</h2>
+</div>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="results-carousel" class="carousel results-carousel">
+        <div class="item item-man-holding-book">
+          <video poster="" id="man-holding-book" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/my_videos/itw/man_holding_book_okay.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-horse">
+          <video poster="" id="horse" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/my_videos/itw/0b02886a.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-horse">
+          <video poster="" id="horse" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/my_videos/itw/1d29944c.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-horse">
+          <video poster="" id="horse" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/my_videos/itw/06eb2803.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-horse">
+          <video poster="" id="horse" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/my_videos/itw/03a50095.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+        <div class="item item-bird">
+          <video poster="" id="bird" autoplay controls muted loop playsinline height="100%">
+            <source src="./static/my_videos/itw/chicken.mp4"
+                    type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Amodal perception enables humans to perceive entire objects even when parts are occluded, a remarkable cognitive skill that artificial intelligence struggles to replicate.
+            Recent diffusion-based methods have extended amodal completion from images to videos, yet they lack auxiliary priors to guide the reconstruction of heavily occluded content and to maintain temporal consistency over long sequences.
+            We present <b>REVEAL</b> (<b>RE</b>constructing <b>V</b>id<b>E</b>o <b>A</b>modal content via <b>L</b>anguage and flow guidance),
+            a unified diffusion-based framework that integrates complementary motion and semantic priors for video amodal completion.
+            A user-provided text query serves a dual role: it drives open-vocabulary video segmentation to obtain visible masks, and it provides semantic guidance for texture reconstruction.
+            For amodal segmentation, we introduce optical flow guidance: by warping visible masks from previous frames to the current frame, the flow-warped mask propagates visible content into occluded regions and approximates the object's current shape, providing a strong shape prior even under simultaneous deformation and occlusion.
+            For texture completion, text guidance constrains the reconstruction of occluded appearance while providing a stable semantic reference that helps maintain visual coherence throughout the reconstruction.
+            We also contribute <b>LAVAT</b>, a new benchmark featuring long video sequences paired with text descriptions, enabling evaluation of text-guided video amodal completion under heavy occlusion.
+            Extensive experiments demonstrate that REVEAL achieves state-of-the-art performance on existing benchmarks while maintaining high-quality temporal consistency over extended sequences.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+
+    <!-- Paper video. -->
+    <!-- <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Video</h2>
+        <div class="publication-video">
+          <iframe src="https://www.youtube.com/" 
+                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div> -->
+    <!--/ Paper video. -->
+  </div>
+</section>
+
+
+
+<section class="section">
+
+
+  <div class="container is-max-desktop">
+      <!-- How does it work?. -->
+    <div class="columns is-centered">
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">How does it work?</h2>
+          <p>
+            REVEAL allows the user to provide a text query specifying the object of interest. The text query serves a dual role: it drives open-vocabulary video segmentation to obtain visible masks across frames, and it provides semantic guidance for texture reconstruction.
+            The model then performs a two-stage prediction.
+            <i>Stage 1 &ndash; Amodal Mask Segmentation</i>: We introduce optical flow guidance as a motion prior. By warping visible masks from previous frames to the current frame, the flow-warped mask propagates visible content into occluded regions and approximates the object's current shape, providing a strong shape prior even under simultaneous deformation and occlusion.
+            <i>Stage 2 &ndash; Video Amodal Texture Completion</i>: Text guidance constrains the reconstruction of occluded appearance while providing a stable semantic reference that helps maintain visual coherence throughout the reconstruction. The text remains constant across frames, offering a consistent semantic anchor for temporal coherence.
+          </p>
+            <figure style="margin-bottom: 1.5rem;">
+              <img id="method"
+                  src="./static/my_images/stage1_pipeline.png"
+                  height="100%"
+                  alt="Stage 1 pipeline">
+              <figcaption style="text-align: center; margin-top: 0.5rem; font-style: italic;">Video Amodal Mask Segmentation Stage. The model uses optical flow as a motion prior, warping visible masks from previous frames to propagate shape information into occluded regions.</figcaption>
+            </figure>
+            <figure>
+              <img id="method"
+                  src="./static/my_images/stage2_pipeline.png"
+                  height="100%"
+                  alt="Stage 2 pipeline">
+              <figcaption style="text-align: center; margin-top: 0.5rem; font-style: italic;">Video Amodal Texture Completion Stage. The second stage conducts amodal texture completion with text guidance as semantic priors, leveraging pretrained diffusion models to reconstruct accurate content based on canonical object shapes and properties.</figcaption>
+            </figure>
+        </div>
+      </div>
+      <!--/ How does it work?. -->
+    </div>
+
+  </div>
+
+
+  <div class="container is-max-desktop"  style="margin-bottom: 30px;">
+
+    <div class="columns is-centered">
+
+      <!-- Comparison on TAO-Amodal. -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Comparison with SOTA on LAVAT</h2>
+          <p>
+            We compare REVEAL with state-of-the-art (SOTA) video amodal completion methods on the LAVAT benchmark.
+          </p>
+
+          <div style="display: flex; justify-content: space-around; text-align: center; font-weight: bold; font-size: 1.1rem; margin-bottom: 0.3rem;">
+            <span style="flex: 1;">Input</span>
+            <span style="flex: 1;">Visible</span>
+            <span style="flex: 1;">TACO</span>
+            <span style="flex: 1;">Diff-VAS</span>
+            <span style="flex: 1;">REVEAL</span>
+          </div>
+
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/my_videos/compare_sota/rhino_grid_vis16.15pct.mp4" type="video/mp4">
+          </video>
+
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/my_videos/compare_sota/7a8cfc91_grid_vis1.50pct.mp4" type="video/mp4">
+          </video>
+
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/my_videos/compare_sota/clip_6Q1IC9r7_wBBJBori_000_grid_vis24.65pct.mp4" type="video/mp4">
+          </video>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+
+<section class="section">
+
+  <div class="container is-max-desktop" style="margin-bottom: 30px;">
+
+    <div class="columns is-centered">
+
+      <!-- Ablation: Flow Prior Guidance -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Ablation Study: Flow Prior Guidance</h2>
+          <p>
+            We study the effect of optical flow as motion priors for amodal mask segmentation.
+          </p>
+
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/my_videos/abla_flows/clip_1aIerTPX_zKAUrRnJ_000_grid_vis10.82pct.mp4" type="video/mp4">
+          </video>
+          <video autoplay controls muted loop playsinline width="100%" style="margin-top: 15px;">
+            <source src="./static/my_videos/abla_flows/clip_5wjt5SL1_PUMAxi8s_000_grid_vis2.93pct.mp4" type="video/mp4">
+          </video>
+          <video autoplay controls muted loop playsinline width="100%" style="margin-top: 15px;">
+            <source src="./static/my_videos/abla_flows/clip_6cuIqaAn_OVmU6ot2_000_grid_vis3.66pct.mp4" type="video/mp4">
+          </video>
+          <video autoplay controls muted loop playsinline width="100%" style="margin-top: 15px;">
+            <source src="./static/my_videos/abla_flows/clip_5wjt5SL1_PUMAxi8s_000_grid_vis2.87pct.mp4" type="video/mp4">
+          </video>
+          <video autoplay controls muted loop playsinline width="100%" style="margin-top: 15px;">
+            <source src="./static/my_videos/abla_flows/clip_WA51f5VF_RErTm52G_000_grid_vis0.57pct.mp4" type="video/mp4">
+          </video>
+          <video autoplay controls muted loop playsinline width="100%" style="margin-top: 15px;">
+            <source src="./static/my_videos/abla_flows/clip_kFF0DxgD_bRUwmWtk_000_grid_vis1.87pct.mp4" type="video/mp4">
+          </video>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container is-max-desktop">
+
+    <div class="columns is-centered">
+
+      <!-- Ablation: Textual Guidance -->
+      <div class="column">
+        <div class="content">
+          <h2 class="title is-3">Ablation Study: Textual Guidance</h2>
+          <p>
+            We study the effect of text guidance as semantic priors for amodal texture completion.
+          </p>
+
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/my_videos/abla_text/clip_2K6Fl595_GletgEss_000_grid_vis2.88pct.mp4" type="video/mp4">
+          </video>
+          <video autoplay controls muted loop playsinline width="100%" style="margin-top: 15px;">
+            <source src="./static/my_videos/abla_text/clip_6yy7OjYl_9QFfdMgu_000_grid_vis2.31pct.mp4" type="video/mp4">
+          </video>
+          <video autoplay controls muted loop playsinline width="100%" style="margin-top: 15px;">
+            <source src="./static/my_videos/abla_text/clip_nQbBoVlO_GletgEss_000_grid_vis2.38pct.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+  
+
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@inproceedings{anonymous2026reveal,
+  title={REVEAL: Reconstructing Video Amodal Content via Language and Flow Guidance},
+  author={Anonymous},
+  booktitle={Under Review},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content" style="text-align: center;">
+          <p>
+            This website is borrowed from <a
+              href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>. We sincerely thank them for this excellent open-source template!
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
